@@ -33,10 +33,10 @@ const LoginPage = () => {
 		}),
 		onSubmit: async (values, { setSubmitting }) => {
 			const loginData = await loginUser(values);
-			const { status, message, data } = loginData;
-			console.log('user', loginData, data.userType)
-
+			const { status, message, data, jwtToken } = loginData;
+			console.log('user', data, data.userType)
       if (status === 200) {
+        localStorage.setItem('token', JSON.stringify(jwtToken));
 				localStorage.setItem('adminOrWarden', JSON.stringify(loginData));
 				// setTimeout(() => alert('User have successfully loggedIn '), 2000)
 				data.userType === 'admin' ? history.push('/adminDashboard') : history.push('/wardenDashboard')

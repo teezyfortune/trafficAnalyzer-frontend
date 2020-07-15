@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useHistory } from 'react-router-dom';
-import {createUser } from '../../actions/authentication';
+import {addWarden } from '../../actions/authentication';
 
 
 const AddWarden = () => {             
@@ -51,7 +51,7 @@ const AddWarden = () => {
 				.required('confirm the password'),
     }),
     onSubmit: async (values, { setSubmitting }) => {
-			const user = await createUser(values);
+			const user = await addWarden(values);
 			const { status, message, data } = user;
 			console.log('>>>>>>>>>>user', user);
 

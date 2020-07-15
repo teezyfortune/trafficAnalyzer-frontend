@@ -1,5 +1,4 @@
 import { BACKEND_URL } from '../utils/links';
-import { authHeader } from '../helper/security';
 
 export const createUser = async (items) => {
 	try {
@@ -10,8 +9,6 @@ export const createUser = async (items) => {
 			headers: { 'Content-Type': 'application/json',  },
 			body: JSON.stringify(userData),
 		}
-				console.log('>>>>', requestOption.body)
-
 		const result = await fetch(`${url}/auth/signup`, requestOption)
 		const data = await result.json();
 		// console.log('>>>>', data)
@@ -20,25 +17,22 @@ export const createUser = async (items) => {
 		return err;
 	}
 }
-const data = localStorage.getItem('adminOrWarden');
-const {jwtToken: token } = data
+        
 
-const headers = {
-	'Content-Type': 'application/json',
-	Authorization: `Bearer ${token}`
-
- }
 export const addWarden = async (items) => {
 	try {
+		const token = localStorage.getItem('token')
 		const url = BACKEND_URL
 		const{ConfirmPassword, ...userData} = items
-		const requestOption = {
-			method: 'POST',
-			headers,
+	const requestOption = {
+		method: 'POST',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json',
+			Authorization: token.split('"').join('')
+		},
 			body: JSON.stringify(userData),
 		}
-				console.log('>>>>', requestOption.body)
-
 		const result = await fetch(`${url}/admin/add-TrafficWarden`, requestOption)
 		const data = await result.json();
 		// console.log('>>>>', data)
