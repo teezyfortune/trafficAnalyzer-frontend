@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useHistory } from 'react-router-dom';
-import {createUser } from '../../actions/authentication';
+import {addWarden } from '../../actions/authentication';
 
 
-const SignupPage = () => {             
+const AddWarden = () => {             
 	const history = useHistory()
   const user = JSON.parse(localStorage.getItem('adminOrwarden'));
   if (user) {
@@ -27,6 +27,7 @@ const SignupPage = () => {
 			country: '',
 			Gender: '',
 			password: '',
+			userType:'traffic-warden',
 			ConfirmPassword:''
     },
     validationSchema: Yup.object({
@@ -50,9 +51,9 @@ const SignupPage = () => {
 				.required('confirm the password'),
     }),
     onSubmit: async (values, { setSubmitting }) => {
-			const user = await createUser(values);
+			const user = await addWarden(values);
 			const { status, message, data } = user;
-			// console.log('>>>>>>>>>>user', data);
+			console.log('>>>>>>>>>>user', user);
 
       if (status === 201) {
 				localStorage.setItem('adminOrWarden', JSON.stringify(data));
@@ -71,7 +72,7 @@ const SignupPage = () => {
 	return (
 		<div className="main-wrapper">
 		<div className="container"> 
-		
+			<h3>Add Warden</h3>
 		<div className="row justify-content-center">
 		<div >
 		<form onSubmit={formik.handleSubmit}>
@@ -175,4 +176,4 @@ const SignupPage = () => {
 	)
 }
 
-export default SignupPage;
+export default AddWarden;
