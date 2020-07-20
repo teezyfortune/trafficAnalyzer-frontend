@@ -31,10 +31,10 @@ const LoginPage = () => {
 			customCheck1: Yup.boolean()
 				.oneOf([true], '')
 		}),
-		onSubmit: async (values, { setSubmitting }) => {
+    
+    onSubmit: async (values, { setSubmitting }) => {
 			const loginData = await loginUser(values);
 			const { status, message, data, jwtToken } = loginData;
-			console.log('user', data, data.userType)
       if (status === 200) {
         localStorage.setItem('token', JSON.stringify(jwtToken));
 				localStorage.setItem('adminOrWarden', JSON.stringify(loginData));
