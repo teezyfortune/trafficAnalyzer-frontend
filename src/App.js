@@ -1,19 +1,18 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './App.css';
-import SignupPage from './components/adminPages/adminSignup';
-import AdminDashBoard from './components/DashBoard/Admindashboard';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "./App.css";
+import SignupPage from "./components/adminPages/adminSignUp/adminSignup";
+import LoginPage from "./components/adminPages/adminLoginPage/adminLogin";
+import AdminDashBoard from "./components/adminPages/adminDashBoard/AdminDashBoard";
 
-const  App = () => (
-      <Router>
+const App = () => (
+  <Router>
     <Switch>
-        <Route path="/signup"  exact component={SignupPage} />
-        <Route path="/admin"  exact component={AdminDashBoard} />
-
-        </Switch>
-      </Router>
-  
-  );
-
+      <Route path="/adminSignUp" exact component={SignupPage} />
+      <Route path="/adminLogin" exact component={LoginPage} />
+      <Route path="/adminDashBoard" exact component={AdminDashBoard} />
+    </Switch>
+  </Router>
+);
 
 export default App;
