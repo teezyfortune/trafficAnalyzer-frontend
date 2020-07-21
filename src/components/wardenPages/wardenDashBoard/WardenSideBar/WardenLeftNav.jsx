@@ -25,7 +25,7 @@ const WardenLeftNav = ({open}) => {
         <li>
           <Link to="/wardenDashBoard" id="menu-list">
             <i className="fa fa-home" aria-hidden="true"></i>
-            <span>Add Warden</span>
+            <span>Send Reports</span>
           </Link>
         </li>
         <li>
@@ -37,7 +37,7 @@ const WardenLeftNav = ({open}) => {
         <li>
           <Link to="/wardenDashBoard" id="menu-list">
             <i className="fa fa-id-card" aria-hidden="true"></i>
-            <span>All Traffic Warden</span>
+            <span>Edit Reports</span>
           </Link>
         </li>
       </Ul>

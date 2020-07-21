@@ -2,58 +2,42 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
-import { createUser } from "../../../../actions/authentication";
+import { sendReports } from "../../../../actions/report";
 import "./Warden.css";
-import profileImage from '../../../Images/profile.svg';
+import profileImage from "../../../Images/profile.svg";
 
 const WardenBody = () => {
   const history = useHistory();
-  const user = JSON.parse(localStorage.getItem("adminOrwarden"));
-  if (user) {
-    history.push("/sponsorDashboard");
-  }
-  const phoneRegex = RegExp(
-    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
-  );
-
+  // const user = JSON.parse(localStorage.getItem("adminOrWarden"));
+  // if (!user) {
+  //   history.push("/login");
+  // }
   const [error, setError] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
   const formik = useFormik({
     initialValues: {
-      fullName: "",
-      email: "",
-      phone: "",
-      city: "",
-      country: "",
-      Gender: "",
-      password: "",
+      congestionTime: "",
+      trafficType: "",
+      congestionDetails: "",
+      location: "",
     },
     validationSchema: Yup.object({
-      fullName: Yup.string().required("fullName can not be empty"),
-      email: Yup.string()
-        .email("Invalid email address format")
-        .required("Email is required"),
-      phone: Yup.string()
-        .required("Phone is required")
-        .max(15, "phone number is too long")
-        .matches(phoneRegex, "Invalid phone"),
-      city: Yup.string().required("City can not be empty"),
-      country: Yup.string().required("Country can not be empty"),
-      Gender: Yup.string().required("Gender can not be empty"),
-      password: Yup.string()
-        .required("password is required")
-        .min(6, "password must be minimum of 6 characters")
-        .matches(/(?=.*[0-9])/, "Password must contain a number."),
+      trafficType: Yup.string().required("Traffic type can not be empty"),
+      congestionTime: Yup.string().required("congestionTime is required"),
+      location: Yup.string().required("Location can not be empty"),
+      congestionDetails: Yup.string()
+        .required("congestionDetails is required")
+        .max(100, "congestion details should not be more than 20"),
     }),
     onSubmit: async (values, { setSubmitting }) => {
-      const user = await createUser(values);
+      const user = await sendReports(values);
       const { status, message, data } = user;
-      // console.log('>>>>>>>>>>user', data);
 
       if (status === 201) {
         localStorage.setItem("adminOrWarden", JSON.stringify(data));
-        return history.push("/");
+        setTimeout(() => alert("User success"), 2000);
+        return history.push("/wardenDashboard");
       }
       setTimeout(() => {
         setError(true);
@@ -67,8 +51,8 @@ const WardenBody = () => {
     <div className="main-wrapper">
       <div className="wrapperWarden">
         <div className="header">
-            <img src={ profileImage } alt="not showing" />
-          <h1>Add New Warden</h1>
+          <img src={profileImage} alt="not showing" />
+          <h1>Today Traffic</h1>
         </div>
         <div className="container">
           <div className="row justify-content-center">
@@ -76,104 +60,70 @@ const WardenBody = () => {
               <form onSubmit={formik.handleSubmit}>
                 {error ? <div className="error">{alertMessage} </div> : ""}
                 <div className="col form-group">
-                  {formik.touched.fullName && formik.errors.fullName ? (
+                  <label htmlFor="CongestionTime">CongestionTime</label>
+                  {formik.touched.congestionTime &&
+                  formik.errors.congestionTime ? (
                     <div className="input-error mt-1 pl-3">
-                      {formik.errors.fullName}
+                      {formik.errors.congestionTime}
                     </div>
                   ) : null}
                   <input
                     type="text"
+                    id="inputCongestionTime"
                     className="form-control"
-                    placeholder="Full Name"
-                    name="fullName"
-                    {...formik.getFieldProps("fullName")}
-                  ></input>
+                    placeholder="Time that the congestion started"
+                    {...formik.getFieldProps("congestionTime")}
+                  />
                 </div>
                 <div className="col form-group">
-                  {formik.touched.phone && formik.errors.phone ? (
+                  <label htmlFor="trafficType">TrafficTypes</label>
+                  {formik.touched.traffic && formik.errors.trafficType ? (
                     <div className="input-error mt-1 pl-3">
-                      {formik.errors.phone}
-                    </div>
-                  ) : null}
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Phone"
-                    name="phone"
-                    {...formik.getFieldProps("phone")}
-                  ></input>
-                </div>
-                <div className="col form-group">
-                  {formik.touched.email && formik.errors.email ? (
-                    <div className="input-error mt-1 pl-3">
-                      {formik.errors.email}
-                    </div>
-                  ) : null}
-                  <input
-                    type="email"
-                    className="form-control"
-                    placeholder="Email"
-                    name="email"
-                    {...formik.getFieldProps("email")}
-                  ></input>
-                </div>
-                <div className="col form-group">
-                  {formik.touched.Gender && formik.errors.Gender ? (
-                    <div className="input-error mt-1 pl-3">
-                      {formik.errors.Gender}
-                    </div>
-                  ) : null}
-                  <label className="form-check form-check-inline">Gender</label>
-                  <select
-                    id="inputGender"
-                    className="form-control"
-                    {...formik.getFieldProps("Gender")}
-                  >
-                    <option defaultValue>Male</option>
-                    <option>Female</option>
-                  </select>
-                </div>
-                <div className="col form-group">
-                  {formik.touched.city && formik.errors.city ? (
-                    <div className="input-error mt-1 pl-3">
-                      {formik.errors.city}
-                    </div>
-                  ) : null}
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="City"
-                    name="city"
-                    {...formik.getFieldProps("city")}
-                  ></input>
-                </div>
-                <div className="col form-group">
-                  {formik.touched.country && formik.errors.country ? (
-                    <div className="input-error mt-1 pl-3">
-                      {formik.errors.country}
+                      {formik.errors.trafficType}
                     </div>
                   ) : null}
                   <select
-                    id="inputState"
+                    id="confirmationType"
                     className="form-control"
-                    {...formik.getFieldProps("country")}
+                    {...formik.getFieldProps("trafficType")}
                   >
-                    <option defaultValue>Country</option>
-                    <option>Uzbekistan</option>
+                    <option>Select cause of traffic</option>
+                    <option value="road block">road block</option>
+                    <option value="road accident">road accident</option>
+                    <option value="road maintenance">road maintenance</option>
+                    <option value="vip movement">vip movement</option>
                   </select>
-                </div> 
+                </div>
                 <div className="col form-group">
-                  {formik.touched.password && formik.errors.password ? (
+                  <label htmlFor="CongestionDetails">CongestionDetails</label>
+                  {formik.touched.congestionDetails &&
+                  formik.errors.congestionDetails ? (
                     <div className="input-error mt-1 pl-3">
-                      {formik.errors.password}
+                      {formik.errors.congestionDetails}
+                    </div>
+                  ) : null}
+                  <textarea
+                    type="text"
+                    id="inputCongestionTime"
+                    className="form-control"
+                    placeholder="Explain for better understanding"
+                    {...formik.getFieldProps("congestionDetails")}
+                  />
+                </div>
+                <div className="col form-group">
+                  <label htmlFor="Location">Location</label>
+                  {formik.touched.location && formik.errors.location ? (
+                    <div className="input-error mt-1 pl-3">
+                      {formik.errors.location}
                     </div>
                   ) : null}
                   <input
-                    type="Password"
+                    type="text"
+                    id="location"
                     className="form-control"
-                    placeholder="password"
-                    {...formik.getFieldProps("password")}
-                  ></input>
+                    placeholder="example: express Road,Punjab 54000"
+                    {...formik.getFieldProps("location")}
+                  />
                 </div>
                 <div className="col form-group">
                   <button
@@ -181,7 +131,7 @@ const WardenBody = () => {
                     id="btn-donate"
                     type="submit"
                   >
-                    Add
+                    Send Reports
                   </button>
                 </div>
               </form>
