@@ -54,7 +54,6 @@ const SignUpPage = () => {
       const user = await createUser(values);
       const { status, message, data } = user;
       // console.log('>>>>>>>>>>user', data);
-
       if (status === 201) {
         localStorage.setItem("adminOrWarden", JSON.stringify(data));
         return history.push("/");

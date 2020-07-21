@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
-import { createUser } from "../../../actions/authentication";
+import { loginUser } from "../../../actions/authentication";
 import "./adminLogin.css";
 import profileImage from '../../Images/profile.svg';
 
@@ -30,7 +30,7 @@ const LoginPage = () => {
         .matches(/(?=.*[0-9])/, "Password must contain a number."),
     }),
     onSubmit: async (values, { setSubmitting }) => {
-      const user = await createUser(values);
+      const user = await loginUser(values);
       const { status, message, data } = user;
       // console.log('>>>>>>>>>>user', data);
 

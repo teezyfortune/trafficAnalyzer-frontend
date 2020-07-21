@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { getAllReports } from '../../actions/report';
+import { getAllReports } from '../../../actions/report';
 import { useHistory, Link } from 'react-router-dom';
 
 export const GetReportPage = () => {
 	const history = useHistory()
-	const path = history;
-	console.log('>>>>>>path', path);
 	const user = JSON.parse(localStorage.getItem('adminOrWarden'));
 	console.log('>>>>>', user.data.userType)
 	if ( user.data.userType!== 'admin') {
@@ -30,19 +28,19 @@ export const GetReportPage = () => {
 		fetAllReports();
 	},	[])
 	const rep =  reports.map((value => value ))
-	console.log('>>>>>>rep', reports);
+	// console.log('>>>>>>rep', reports);
 	return (
 		<div>
 		<h1 className="text-center">Reports</h1>
 		<div>
-		{rep.map(locate => (
+		{rep.map( (locate, index) => (
 
-		<div >
+		<div>
 				{error ? <div className="nnn">{messageAlert} </div> : ''}
-				<div className="new" style={{ margin: "4rem" }}  key= {locate._id}>
-					<div  key= {locate._id}>{locate.location}</div>	
-					<div  key= {locate._id}>{locate.congestionTime}</div>
-				  <Link to="/reports/{"></Link>
+				<div className="new" style={{ margin: "4rem" }} key={locate.latitude}>
+					<div key={locate._id.toString()}>{locate.location}</div>	
+					<div  key= {locate._id.toString()}>{locate.congestionTime}</div>
+					<Link className="btn btn-info" to={`/reports/${locate._id}`}>view Details</Link>
 </div>
 				</div>
 			))}
