@@ -1,5 +1,5 @@
 import  { useState, useEffect } from 'react';
-import { Positions } from '../Reports/Positions';
+import { Positions } from './Positions';
 
 export const  TestingPage = () => {
 	const [data, getCoordinates]  = useState(null)
