@@ -35,7 +35,6 @@ export const addWarden = async (items) => {
 		}
 		const result = await fetch(`${url}/admin/add-TrafficWarden`, requestOption)
 		const data = await result.json();
-		// console.log('>>>>', data)
 		return data;
 	} catch (err) {
 		return err;
@@ -54,9 +53,9 @@ export const loginUser = async (items) => {
 		}
 		const result = await fetch(`${url}/auth/login`, requestOption)
 		const data = await result.json();
-		// console.log('>>>>', data)
 		return data;
 	} catch (err) {
+		// console.log('>>>>', err)
 		return err;
 	}
 }

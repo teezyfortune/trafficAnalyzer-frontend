@@ -7,9 +7,9 @@ import {addWarden } from '../../actions/authentication';
 
 const AddWarden = () => {             
 	const history = useHistory()
-  const user = JSON.parse(localStorage.getItem('adminOrwarden'));
-  if (user) {
-    history.push('/sponsorDashboard');
+  const user = JSON.parse(localStorage.getItem('adminOrWarden'));
+  if (!user) {
+    history.push('/login');
 	}
 	const phoneRegex = RegExp(
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -53,13 +53,10 @@ const AddWarden = () => {
     onSubmit: async (values, { setSubmitting }) => {
 			const user = await addWarden(values);
 			const { status, message, data } = user;
-			console.log('>>>>>>>>>>user', user);
-
       if (status === 201) {
 				localStorage.setItem('adminOrWarden', JSON.stringify(data));
 				setTimeout(() => alert('User successfully created'), 2000);
 				return history.push('/login');
-
       }
       setTimeout(() => {
         setError(true);
