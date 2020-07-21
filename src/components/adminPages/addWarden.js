@@ -69,7 +69,7 @@ const AddWarden = () => {
 	return (
 		<div className="main-wrapper">
 		<div className="container"> 
-			<h3>Add Warden</h3>
+			<h3 className="text-center">Add Warden</h3>
 		<div className="row justify-content-center">
 		<div >
 		<form onSubmit={formik.handleSubmit}>

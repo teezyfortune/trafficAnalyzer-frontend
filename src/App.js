@@ -5,17 +5,21 @@ import SignupPage from "./components/adminPages/adminSignUp/adminSignup";
 import LoginPage from "./components/adminPages/adminLoginPage/adminLogin";
 import AdminDashBoard from "./components/adminPages/adminDashBoard/AdminDashBoard";
 import wardenDashBoard from "./components/wardenPages/wardenDashBoard/WardenDashBoard.jsx";
-import AddWarden from "./components/DashBoard/addWarden";
+import AddWarden from "./components/adminPages/addWarden";
 import WardenLoginPage from "./components/wardenPages/wardenLoginPage/wardenLogin";
-import { ReportsPage } from './components/Reports/ReportsPage';
-import {TestingPage} from './components/Reports/testingPage';
-import { getPlaces } from '../src/actions/report';
+import { ReportsPage } from './components/adminPages/Reports/ReportsPage';
+import { TestingPage } from './components/adminPages/Reports/testingPage';
+import {GetReportPage} from './components/adminPages/Reports/getReportPage';
+import {ReportDetails} from './components/adminPages/Reports/reportDetails';
+
 
 const App = () => (
   <Router>
     <Switch>
       <Route path="/adminSignUp" exact component={SignupPage} />
       <Route path="/send-report" exact component={ReportsPage} />
+      <Route path="/reports" exact component={GetReportPage} />
+      <Route path="/reports/:reportId" exact component={ReportDetails} />
       <Route path="/search" exact component={TestingPage} />
       <Route path="/adminLogin" exact component={LoginPage} />
       <Route path="/adminDashBoard" exact component={AdminDashBoard} />
