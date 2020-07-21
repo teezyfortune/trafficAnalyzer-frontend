@@ -34,7 +34,8 @@ const LoginPage = () => {
     
     onSubmit: async (values, { setSubmitting }) => {
 			const loginData = await loginUser(values);
-			const { status, message, data, jwtToken } = loginData;
+      const { status, message, data, jwtToken } = loginData;
+      console.log('>>>>star', message, alertMessage)
       if (status === 200) {
         localStorage.setItem('token', JSON.stringify(jwtToken));
 				localStorage.setItem('adminOrWarden', JSON.stringify(loginData));

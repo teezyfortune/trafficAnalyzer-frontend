@@ -21,3 +21,22 @@ export const sendReports = async (items) => {
 		return err
 	}
 }
+
+export const getAllReports = async (items) => {
+	try {
+		const url = BACKEND_URL
+		const token = localStorage.getItem('token')
+		const reqOption = {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: token.split('"').join('')
+			},
+		}
+		const result = await fetch(`${url}/admin/findAll`, reqOption)
+		return await result.json()
+	} catch (err) {
+		return err
+	}
+}
+

@@ -75,8 +75,7 @@ const SignupPage = () => {
 		<div className="row justify-content-center">
 		<div >
 		<form onSubmit={formik.handleSubmit}>
-			{ error ? <div className="error">{alertMessage} </div> : '' }
-				<div className="col form-group">
+z				<div className="col form-group">
 				{formik.touched.fullName && formik.errors.fullName
 					? (<div className='input-error mt-1 pl-3'>{formik.errors.fullName}</div>) : null}
 								<input type="text"
