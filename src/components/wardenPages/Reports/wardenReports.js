@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { getAllReports } from '../../../actions/report';
+import { getAllWardenReport } from '../../../actions/report';
 import { useHistory, Link } from 'react-router-dom';
 
-export const GetReportPage = () => {
+export const WardenReports = () => {
 	const history = useHistory()
 	const user = JSON.parse(localStorage.getItem('adminOrWarden'));
-	// console.log('>>>>>', user.userType)
-	if ( user.userType!== 'admin') {
-		history.push('/');
+	console.log('>>>>>', user)
+	if ( user.userType!== 'traffic-warden') {
+		history.push('/wardenLogin');
 	}
 	const [reports, fetchReports] = useState([]);
 	const [messageAlert, setMessageAlert] = useState('');
@@ -16,12 +16,12 @@ export const GetReportPage = () => {
 	useEffect(() => {
 		const fetAllReports = async () => {
 			try {
-				const report = await getAllReports();
+				const report = await getAllWardenReport();
 				const { message, data } = report;
-
 				fetchReports(data);
 				setMessageAlert(message)
 			} catch (err) {
+				console.log('>>>>>err', err)
 				setError(true)
 			}
 		}

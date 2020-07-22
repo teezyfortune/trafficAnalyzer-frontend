@@ -60,3 +60,68 @@ export const getOneReport = async (id) => {
 	}
 }
 
+
+
+
+export const getOneWardenReport = async () => {
+	try {
+		const url = BACKEND_URL
+		const token = localStorage.getItem('token')
+		const reqOption = {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: token.split('"').join('')
+			},
+		}
+		const result = await fetch(`${url}/report/warden-report`, reqOption)
+		const report = await result.json();
+		return report
+	} catch (err) {
+		return err
+	}
+}
+
+
+
+export const getAllWardenReport = async () => {
+	try {
+		const url = BACKEND_URL
+		const token = localStorage.getItem('token')
+		const reqOption = {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: token.split('"').join('')
+			},
+		}
+		const result = await fetch(`${url}/report/all-wardenReports`, reqOption)
+		const report = await result.json();
+		return report
+	} catch (err) {
+		return err
+	}
+}
+
+
+
+export const editWardenReport = async (items) => {
+	try {
+		const url = BACKEND_URL
+		const token = localStorage.getItem('token')
+		const reqOption = {
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: token.split('"').join('')
+			},
+			body: JSON.stringify(items)
+		}
+		const result = await fetch(`${url}/report/edit-report`, reqOption)
+		const report = await result.json();
+		return report
+	} catch (err) {
+		return err
+	}
+}
+

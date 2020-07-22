@@ -1,17 +1,14 @@
-import React, { useState } from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import { useHistory } from 'react-router-dom';
-import { sendReports } from '../../../actions/report';
+import React, {useState, useEffect} from 'react'
+import { useParams, Link } from 'react-router-dom';
+import { editWardenReport } from '../../../actions/report';
 
-export const ReportsPage = () => {
-	const history = useHistory()
-	const user = JSON.parse(localStorage.getItem('adminOrWarden'));
-	if (!user) {
-	  history.push('/login');
-	}
+
+export const ViewReport = () => {
+	const match  = useParams();
+	// console.log('>>>>match', match.reportId)
 	const [error, setError] = useState(false);
-	const [alertMessage, setAlertMessage] = useState('')
+	const [alertMessage, setAlertMessage] = useState('');
+
 	const formik = useFormik({
 		initialValues: {
 			congestionTime: '',
@@ -20,22 +17,19 @@ export const ReportsPage = () => {
 			location: ''
 		},
 		validationSchema: Yup.object({
-			trafficType: Yup.string().required('Traffic type can not be empty'),
+			trafficType: Yup.string(),
 			congestionTime: Yup.string()
 				.required('congestionTime is required'),
-				location:  Yup.string()
-				.required('Location can not be empty'),
+				location:  Yup.string(),
 			congestionDetails: Yup.string()
-				.required('congestionDetails is required')
-				.max(100, 'congestion details should not be more than 20'),
 		}),
 		onSubmit: async (values, { setSubmitting }) => {
-			const user = await sendReports(values);
-			const { status, message, data } = user;
+			const report = await editWardenReport(values);
+			const { status, message, data } = report;
 
-			if (status === 201) {
+			if (status === 200) {
 				localStorage.setItem('adminOrWarden', JSON.stringify(data));
-				setTimeout(() => alert('User success'), 2000);
+				// setTimeout(() => alert('User success'), 2000);
 				return history.push('/wardenDashboard');
 
 			}
@@ -59,7 +53,7 @@ export const ReportsPage = () => {
 								<div className="container">
 									<div className="row">
 										 <div className="col-md-9 col-lg-8 mx-auto">
-											 <h2 className="login-heading mb-4 text-center">Send Traffic Reports</h2>
+											 <h2 className="login-heading mb-4 text-center">Update Traffic Reports</h2>
 											 { error ? <div className="error">{alertMessage} </div> : '' }
 										<form onSubmit={formik.handleSubmit}>
 										<label htmlFor="CongestionTime">CongestionTime</label>

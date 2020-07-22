@@ -8,10 +8,10 @@ import profileImage from '../../../Images/profile.svg';
 
 const AdminBody = () => {
   const history = useHistory();
-  const user = JSON.parse(localStorage.getItem("adminOrwarden"));
-  if (user) {
-    history.push("/sponsorDashboard");
-  }
+  const user = JSON.parse(localStorage.getItem("adminOrWarden"));
+  if ( user.userType!== 'admin') {
+		history.push('/');
+	}
   const phoneRegex = RegExp(
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
   );
@@ -26,6 +26,7 @@ const AdminBody = () => {
       phone: "",
       city: "",
       country: "",
+      userType:'traffic-warden',
       Gender: "",
       password: "",
     },
