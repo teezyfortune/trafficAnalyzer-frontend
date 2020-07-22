@@ -29,7 +29,7 @@ const AdminLeftNav = ({open}) => {
           </Link>
         </li>
         <li>
-          <Link to="/adminDashBoard" id="menu-list">
+          <Link exact to="/admin/reports" id="menu-list">
             <i className="fa fa-user" aria-hidden="true"></i>
             <span>All Reports</span>
           </Link>

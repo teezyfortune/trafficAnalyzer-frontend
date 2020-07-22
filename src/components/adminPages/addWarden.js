@@ -55,8 +55,8 @@ const AddWarden = () => {
 			const { status, message, data } = user;
       if (status === 201) {
 				localStorage.setItem('adminOrWarden', JSON.stringify(data));
-				setTimeout(() => alert('User successfully created'), 2000);
-				return history.push('/login');
+				// setTimeout(() => alert('User successfully created'), 2000);
+				return history.push('/adminDashBoard');
       }
       setTimeout(() => {
         setError(true);
