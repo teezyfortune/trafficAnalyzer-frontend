@@ -10,7 +10,7 @@ const WardenLoginPage = () => {
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem("adminOrwarden"));
   if (user) {
-    history.push("/sponsorDashboard");
+    history.push("/wardenDashboard");
   }
   const [error, setError] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
@@ -36,7 +36,7 @@ const WardenLoginPage = () => {
 
       if (status === 200) {
         localStorage.setItem("adminOrWarden", JSON.stringify(data));
-        return history.push("/");
+        return history.push("/wardenDashboard");
       }
       setTimeout(() => {
         setError(true);

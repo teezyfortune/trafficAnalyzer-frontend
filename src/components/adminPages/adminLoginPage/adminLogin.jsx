@@ -10,7 +10,7 @@ const LoginPage = () => {
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem("adminOrwarden"));
   if (user) {
-    history.push("/sponsorDashboard");
+    history.push("/adminDashBoard");
   }
   const [error, setError] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
@@ -36,7 +36,7 @@ const LoginPage = () => {
 
       if (status === 201) {
         localStorage.setItem("adminOrWarden", JSON.stringify(data));
-        return history.push("/");
+        return history.push("/adminDashBoard");
       }
       setTimeout(() => {
         setError(true);

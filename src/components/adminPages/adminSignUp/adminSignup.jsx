@@ -10,7 +10,7 @@ const SignUpPage = () => {
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem("adminOrwarden"));
   if (user) {
-    history.push("/sponsorDashboard");
+    history.push("/adminDashBoard");
   }
   const phoneRegex = RegExp(
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -56,7 +56,7 @@ const SignUpPage = () => {
       // console.log('>>>>>>>>>>user', data);
       if (status === 201) {
         localStorage.setItem("adminOrWarden", JSON.stringify(data));
-        return history.push("/");
+        return history.push("/adminLogin");
       }
       setTimeout(() => {
         setError(true);
@@ -132,7 +132,8 @@ const SignUpPage = () => {
                     className="form-control"
                     {...formik.getFieldProps("Gender")}
                   >
-                    <option defaultValue>Male</option>
+                    <option defaultValue>Gender</option>
+                    <option>Male</option>
                     <option>Female</option>
                   </select>
                 </div>
