@@ -8,10 +8,10 @@ import profileImage from '../../Images/profile.svg';
 
 const SignUpPage = () => {
   const history = useHistory();
-  const user = JSON.parse(localStorage.getItem("adminOrwarden"));
-  // if (user) {
-  //   history.push("/Dashboard");
-  // }
+  const user = JSON.parse(localStorage.getItem("adminOrWarden"));
+  if (user) {
+    history.push("/adminDashBoard");
+  }
   const phoneRegex = RegExp(
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
   );
@@ -132,7 +132,8 @@ const SignUpPage = () => {
                     className="form-control"
                     {...formik.getFieldProps("Gender")}
                   >
-                    <option defaultValue>Male</option>
+                    <option defaultValue>Gender</option>
+                    <option>Male</option>
                     <option>Female</option>
                   </select>
                 </div>

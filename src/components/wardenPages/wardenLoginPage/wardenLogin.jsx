@@ -8,10 +8,9 @@ import profileImage from '../../Images/profile.svg';
 
 const WardenLoginPage = () => {
   const history = useHistory();
-  const user = JSON.parse(localStorage.getItem("adminOrWarden"));
-  console.log('>>>>>usellr', user)
-  if (user.userType === 'traffic-warden') {
-    history.push("/wardenDashBoard");
+  const user = JSON.parse(localStorage.getItem("adminOrwarden"));
+  if (user) {
+    history.push("/wardenDashboard");
   }
   const [error, setError] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");

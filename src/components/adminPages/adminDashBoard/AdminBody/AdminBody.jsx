@@ -54,7 +54,7 @@ const AdminBody = () => {
       // console.log('>>>>>>>>>>user', data);
 
       if (status === 201) {
-        // localStorage.setItem("adminOrWarden", JSON.stringify(data));
+        localStorage.setItem("adminOrWarden", JSON.stringify(data));
         return history.push("/adminDashBoard");
       }
       setTimeout(() => {

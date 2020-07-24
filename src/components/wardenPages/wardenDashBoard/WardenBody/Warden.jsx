@@ -9,11 +9,9 @@ import profileImage from "../../../Images/profile.svg";
 const WardenBody = () => {
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem("adminOrWarden"));
-  console.log('>>>>user',  user)
-  // if (user !++ ) {
-  //   history.push("/login");
-  // }
-  
+  if (!user) {
+    history.push("/wardenLogin");
+  }
   const [error, setError] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
