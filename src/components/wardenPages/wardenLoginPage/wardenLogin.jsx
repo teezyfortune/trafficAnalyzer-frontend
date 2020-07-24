@@ -31,12 +31,13 @@ const WardenLoginPage = () => {
     }),
     onSubmit: async (values, { setSubmitting }) => {
       const user = await loginUser(values);
-      const { status, message, data } = user;
+      const { status, message, data, jwtToken } = user;
       // console.log('>>>>>>>>>>user', data);
 
       if (status === 200) {
+        localStorage.setItem("token", JSON.stringify(jwtToken));
         localStorage.setItem("adminOrWarden", JSON.stringify(data));
-        return history.push("/wardenDashboard");
+        return history.push("/wardenDashBoard");
       }
       setTimeout(() => {
         setError(true);

@@ -9,9 +9,10 @@ import profileImage from '../../../Images/profile.svg';
 const AdminBody = () => {
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem("adminOrWarden"));
+  console.log(">>>>>user", user.userType)
   if ( user.userType!== 'admin') {
 		history.push('/');
-	}
+  }
   const phoneRegex = RegExp(
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
   );

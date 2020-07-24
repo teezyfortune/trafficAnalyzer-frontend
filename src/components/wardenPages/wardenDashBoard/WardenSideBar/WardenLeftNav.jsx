@@ -29,13 +29,13 @@ const WardenLeftNav = ({open}) => {
           </Link>
         </li>
         <li>
-          <Link to="/wardenDashBoard" id="menu-list">
+          <Link to="/warden/reports" id="menu-list">
             <i className="fa fa-user" aria-hidden="true"></i>
             <span>All Reports</span>
           </Link>
         </li>
         <li>
-          <Link to="/wardenDashBoard" id="menu-list">
+          <Link to="/warden/edit-report" id="menu-list">
             <i className="fa fa-id-card" aria-hidden="true"></i>
             <span>Edit Reports</span>
           </Link>

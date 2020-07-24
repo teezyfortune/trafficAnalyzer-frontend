@@ -35,7 +35,6 @@ const WardenBody = () => {
       const { status, message, data } = user;
 
       if (status === 201) {
-        localStorage.setItem("adminOrWarden", JSON.stringify(data));
         setTimeout(() => alert("User success"), 2000);
         return history.push("/wardenDashboard");
       }

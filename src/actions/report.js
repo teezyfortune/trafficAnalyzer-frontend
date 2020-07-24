@@ -25,7 +25,8 @@ export const sendReports = async (items) => {
 export const getAllReports = async () => {
 	try {
 		const url = BACKEND_URL
-		const token = localStorage.getItem('token')
+		const token = localStorage.getItem('token');
+		console.log('>>>>>', token)
 		const reqOption = {
 			method: 'GET',
 			headers: {
@@ -33,7 +34,7 @@ export const getAllReports = async () => {
 				Authorization: token.split('"').join('')
 			},
 		}
-		const result = await fetch(`${url}/admin/findAll`, reqOption)
+		const result = await fetch(`${url}/admin/find-allReports`, reqOption)
 		return await result.json()
 	} catch (err) {
 		return err
@@ -97,6 +98,7 @@ export const getAllWardenReport = async () => {
 		}
 		const result = await fetch(`${url}/report/all-wardenReports`, reqOption)
 		const report = await result.json();
+		console.log('>>>>>>report', report)
 		return report
 	} catch (err) {
 		return err
@@ -124,4 +126,6 @@ export const editWardenReport = async (items) => {
 		return err
 	}
 }
+
+
 

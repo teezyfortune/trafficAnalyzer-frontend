@@ -8,9 +8,9 @@ import profileImage from '../../Images/profile.svg';
 
 const LoginPage = () => {
   const history = useHistory();
-  const user = JSON.parse(localStorage.getItem("adminOrwarden"));
-  if (user) {
-    history.push("/adminDashBoard");
+  const user = JSON.parse(localStorage.getItem("adminOrWarden"));
+  if (!user) {
+    history.push("/");
   }
   const [error, setError] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
@@ -31,10 +31,11 @@ const LoginPage = () => {
     }),
     onSubmit: async (values, { setSubmitting }) => {
       const user = await loginUser(values);
-      const { status, message, data } = user;
+      const { status, message, data, jwtToken } = user;
       // console.log('>>>>>>>>>>user', data);
 
-      if (status === 201) {
+      if (status === 200) {
+        localStorage.setItem("token", JSON.stringify(jwtToken));
         localStorage.setItem("adminOrWarden", JSON.stringify(data));
         return history.push("/adminDashBoard");
       }

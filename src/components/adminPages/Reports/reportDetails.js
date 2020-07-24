@@ -16,7 +16,7 @@ export const ReportDetails = () => {
 		const findUser = async () => {
 			try {
 				const result = await getOneReport(reportId);
-				const {message, data} = result
+				const {message} = result
 				// console.log('>>>>its show here', data.location )
 				fetOneReport(result);
 				setMessage(message)
