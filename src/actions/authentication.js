@@ -59,3 +59,44 @@ export const loginUser = async (items) => {
 		return err;
 	}
 }
+
+
+
+export const FetchAllWarden = async () => {
+	try {
+		const url = BACKEND_URL
+		const token = localStorage.getItem('token')
+		const reqOption = {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: token.split('"').join('')
+			},
+		}
+		const result = await fetch(`${url}/admin/find-allWardens`, reqOption)
+		const report = await result.json();
+		return report
+	} catch (err) {
+		return err
+	}
+}
+
+
+export const FetchOneWarden = async (id) => {
+	try {
+		const url = BACKEND_URL
+		const token = localStorage.getItem('token')
+		const reqOption = {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: token.split('"').join('')
+			},
+		}
+		const result = await fetch(`${url}/admin/${id}/find-warden`, reqOption)
+		const report = await result.json();
+		return report
+	} catch (err) {
+		return err
+	}
+}

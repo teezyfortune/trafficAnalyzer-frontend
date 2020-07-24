@@ -35,7 +35,7 @@ const AdminLeftNav = ({open}) => {
           </Link>
         </li>
         <li>
-          <Link to="/adminDashBoard" id="menu-list">
+          <Link to="/admin/wardens" id="menu-list">
             <i className="fa fa-id-card" aria-hidden="true"></i>
             <span>All Traffic Warden</span>
           </Link>

@@ -1,20 +1,25 @@
 import React, {useState, useEffect} from 'react'
-import { useParams, Link } from 'react-router-dom';
-import { editWardenReport } from '../../../actions/report';
+import {  useHistory } from 'react-router-dom';
+import { editWardenReport, getOneWardenReport } from '../../../actions/report';
+import * as Yup from 'yup';
+import { useFormik } from 'formik';
 
 
-export const ViewReport = () => {
-	const match  = useParams();
-	// console.log('>>>>match', match.reportId)
+export const EditReport = () => {
+	const history = useHistory()
+	const user = JSON.parse(localStorage.getItem('adminOrWarden'));
+	if ( user.userType!== 'traffic-warden') {
+		history.push('/wardenLogin');
+	}
 	const [error, setError] = useState(false);
 	const [alertMessage, setAlertMessage] = useState('');
+
 
 	const formik = useFormik({
 		initialValues: {
 			congestionTime: '',
 			trafficType: '',
 			congestionDetails: '',
-			location: ''
 		},
 		validationSchema: Yup.object({
 			trafficType: Yup.string(),
@@ -26,10 +31,8 @@ export const ViewReport = () => {
 		onSubmit: async (values, { setSubmitting }) => {
 			const report = await editWardenReport(values);
 			const { status, message, data } = report;
-
+			console.log('>>>>', )
 			if (status === 200) {
-				localStorage.setItem('adminOrWarden', JSON.stringify(data));
-				// setTimeout(() => alert('User success'), 2000);
 				return history.push('/wardenDashboard');
 
 			}
@@ -42,23 +45,13 @@ export const ViewReport = () => {
 		})
 
 	return (
-
-			<div>
-				<div className="container wrapper">
-					<div className="row no-gutter wrapper">
-						<div className="d-none d-md-flex col-md-6 bg-image">
-						</div>
-						<div className="col-md-6">
-							<div className="login d-flex align-items-center py-5">
-								<div className="container">
-									<div className="row">
-										 <div className="col-md-9 col-lg-8 mx-auto">
-											 <h2 className="login-heading mb-4 text-center">Update Traffic Reports</h2>
+			<div >
+			<h2 className="login-heading mb-4 text-center">Update Traffic Reports</h2>
 											 { error ? <div className="error">{alertMessage} </div> : '' }
 										<form onSubmit={formik.handleSubmit}>
 										<label htmlFor="CongestionTime">CongestionTime</label>
 															<div className="form-label-group">
-												<input
+					<input 
 																 type="text"
 																	id="inputCongestionTime"
 																	className="form-control"
@@ -73,7 +66,8 @@ export const ViewReport = () => {
 												<div className="col-md-12">
 												<label htmlFor="CongestionTime">TrafficTypes</label>
                        <div className="form-label-group">
-                         <select
+												<select
+								
                           id="confirmationType"
                           className="form-control"
                           {...formik.getFieldProps('trafficType')}
@@ -104,20 +98,7 @@ export const ViewReport = () => {
 																? (<div className ='input-error mt-1 pl-3'>{formik.errors.congestionDetails}</div>) : null
 															}
 											</div>
-											<div className="form-label-group">
-											<label htmlFor="Location">Location</label>
-												<input
-												 type="text"
-													id="location"
-													className="form-control"
-													placeholder="example, express Road, Lahore, Punjab 54000"
-													{...formik.getFieldProps('location')}
-
-													/>
-															{formik.touched.location && formik.errors.location
-																? (<div className ='input-error mt-1 pl-3'>{formik.errors.location}</div>) : null
-															}
-															</div>
+									
 															<button className="btn btn-success btn-block btn-login mb-2" type="submit"
 															>Send Reports</button>
 															<div className="form-group col-lg-12 mx-auto d-flex align-items-center my-3">
@@ -125,12 +106,6 @@ export const ViewReport = () => {
 															</div>
 													</form>
 											</div>
-										</div>
-								 </div>
-							</div>
-						</div>
-					</div>
-			 </div>
-		</div>
+										
 	);	
 	}

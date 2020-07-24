@@ -8,10 +8,12 @@ import profileImage from "../../../Images/profile.svg";
 
 const WardenBody = () => {
   const history = useHistory();
-  // const user = JSON.parse(localStorage.getItem("adminOrWarden"));
-  // if (!user) {
+  const user = JSON.parse(localStorage.getItem("adminOrWarden"));
+  console.log('>>>>user',  user)
+  // if (user !++ ) {
   //   history.push("/login");
   // }
+  
   const [error, setError] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
@@ -35,7 +37,6 @@ const WardenBody = () => {
       const { status, message, data } = user;
 
       if (status === 201) {
-        localStorage.setItem("adminOrWarden", JSON.stringify(data));
         setTimeout(() => alert("User success"), 2000);
         return history.push("/wardenDashboard");
       }

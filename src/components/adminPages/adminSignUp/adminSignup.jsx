@@ -9,9 +9,9 @@ import profileImage from '../../Images/profile.svg';
 const SignUpPage = () => {
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem("adminOrwarden"));
-  if (user) {
-    history.push("/sponsorDashboard");
-  }
+  // if (user) {
+  //   history.push("/Dashboard");
+  // }
   const phoneRegex = RegExp(
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
   );
@@ -52,11 +52,11 @@ const SignUpPage = () => {
     }),
     onSubmit: async (values, { setSubmitting }) => {
       const user = await createUser(values);
-      const { status, message, data } = user;
+      const { status, message, data, jwtToken } = user;
       // console.log('>>>>>>>>>>user', data);
       if (status === 201) {
         localStorage.setItem("adminOrWarden", JSON.stringify(data));
-        return history.push("/");
+        return history.push("/adminDashBoard");
       }
       setTimeout(() => {
         setError(true);

@@ -11,7 +11,12 @@ import { TestingPage } from './components/adminPages/Reports/testingPage';
 import {GetReportPage} from './components/adminPages/Reports/getReportPage';
 import {ReportDetails} from './components/adminPages/Reports/reportDetails';
 import {WardenReports} from './components/wardenPages/Reports/wardenReports';
-import {ViewReport} from './components/wardenPages/Reports/viewReports';
+import { ViewReport } from './components/wardenPages/Reports/viewReports';
+import { EditReport } from './components/wardenPages/Reports/editeports';
+import { FetchWardenPage } from './components/adminPages/wardens/wardens';
+import { WardenDetails} from './components/adminPages/wardens/Details';
+
+
 
 
 const App = () => (
@@ -20,13 +25,16 @@ const App = () => (
       <Route path="/adminSignUp" exact component={SignupPage} />
       <Route path="/send-report" exact component={ReportsPage} />
       <Route path="/admin/reports" exact component={GetReportPage} />
-      <Route path="/warden-reports" exact component={WardenReports} />
+      <Route path="/warden/reports" exact component={WardenReports} />
+      <Route path="/warden/edit-report" exact component={EditReport} />
       <Route path="/reports/:reportId" exact component={ReportDetails} />
-      <Route path="/reports/warden/:reportId" exact component={ViewReport} />
+      <Route path="/warden/report/:reportId" exact component={ViewReport} />
       <Route path="/search" exact component={TestingPage} />
       <Route path="/adminLogin" exact component={LoginPage} />
       <Route path="/adminDashBoard" exact component={AdminDashBoard} />
       <Route path="/wardenDashboard" exact component={wardenDashBoard} />
+      <Route path="/admin/wardens" exact component={FetchWardenPage} />
+      <Route path="/admin/wardens/:wardenId" exact component={WardenDetails} />
       <Route path="/wardenLogin" exact component={WardenLoginPage} />
     </Switch>
   </Router>
