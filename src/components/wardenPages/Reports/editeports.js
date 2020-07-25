@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState,} from 'react'
 import {  useHistory } from 'react-router-dom';
-import { editWardenReport, getOneWardenReport } from '../../../actions/report';
+import { editWardenReport } from '../../../actions/report';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 
@@ -30,7 +30,7 @@ export const EditReport = () => {
 		}),
 		onSubmit: async (values, { setSubmitting }) => {
 			const report = await editWardenReport(values);
-			const { status, message, data } = report;
+			const { status, message } = report;
 			console.log('>>>>', )
 			if (status === 200) {
 				return history.push('/wardenDashboard');

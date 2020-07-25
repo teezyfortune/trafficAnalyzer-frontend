@@ -9,26 +9,19 @@ export const GetReportPage = () => {
 		history.push('/');
 	}
 	const [reports, fetchReports] = useState([]);
-	const [messageAlert, setMessageAlert] = useState('');
-	const [error, setError] = useState(false);
 
 	useEffect(() => {
 		const fetAllReports = async () => {
 			try {
 				const report = await getAllReports();
-				const { status, message, data } = report;
-				// if (status === 401) {
-				// 		history.push('/adminDashBoard');
-				// 		}
+				const { data } = report;
+			
 				fetchReports(data);
-				setMessageAlert(message)
 			} catch (err) {
-				setError(true)
-			}
+				return err			}
 		}
 		fetAllReports();
 	},	[])
-	// const rep =  reports.map((value => value ))
 	return (
 		<div>
 		<h1 className="text-center">Reports</h1>
