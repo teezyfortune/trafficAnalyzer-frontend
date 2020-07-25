@@ -16,6 +16,8 @@ import { EditReport } from './components/wardenPages/Reports/editeports';
 import { FetchWardenPage } from './components/adminPages/wardens/wardens';
 import { WardenDetails} from './components/adminPages/wardens/Details';
 import {HomePage} from './components/HomePage/HomePage';
+import AllWarden from './components/adminPages/ViewAllWarden/allWarden';
+import SingleWarden from './components/adminPages/ViewSingleWarden/singleWarden';
 
 
 
@@ -38,6 +40,8 @@ const App = () => (
       <Route path="/admin/wardens" exact component={FetchWardenPage} />
       <Route path="/admin/wardens/:wardenId" exact component={WardenDetails} />
       <Route path="/wardenLogin" exact component={WardenLoginPage} />
+      <Route path="/admin/allWarden" exact component={AllWarden} />
+      <Route path="/singleWarden" exact component={SingleWarden} />
     </Switch>
   </Router>
 );
