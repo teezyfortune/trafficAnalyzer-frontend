@@ -35,8 +35,8 @@ export const ReportsPage = () => {
 
 			if (status === 201) {
 				localStorage.setItem('adminOrWarden', JSON.stringify(data));
-				setTimeout(() => alert('User success'), 2000);
-				return history.push('/wardenDashboard');
+				setTimeout(() => alert('report sent successfully'), 2000);
+				return history.push('/warden/reports');
 
 			}
 			setTimeout(() => {
