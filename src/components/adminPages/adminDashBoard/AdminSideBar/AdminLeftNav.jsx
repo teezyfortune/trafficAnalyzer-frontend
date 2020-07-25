@@ -40,6 +40,12 @@ const AdminLeftNav = ({open}) => {
             <span>All Traffic Warden</span>
           </Link>
         </li>
+        <li>
+          <Link to="/admin/allWarden" id="menu-list">
+            <i className="fa fa-id-card" aria-hidden="true"></i>
+            <span>All Warden</span>
+          </Link>
+        </li>
       </Ul>
     </>
   );
