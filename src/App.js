@@ -15,6 +15,7 @@ import { ViewReport } from './components/wardenPages/Reports/viewReports';
 import { EditReport } from './components/wardenPages/Reports/editeports';
 import { FetchWardenPage } from './components/adminPages/wardens/wardens';
 import { WardenDetails} from './components/adminPages/wardens/Details';
+import {HomePage} from './components/HomePage/HomePage';
 
 
 
@@ -22,6 +23,7 @@ import { WardenDetails} from './components/adminPages/wardens/Details';
 const App = () => (
   <Router>
     <Switch>
+    <Route path="/traffic-map/Home" exact component={HomePage} />
       <Route path="/adminSignUp" exact component={SignupPage} />
       <Route path="/send-report" exact component={ReportsPage} />
       <Route path="/admin/reports" exact component={GetReportPage} />

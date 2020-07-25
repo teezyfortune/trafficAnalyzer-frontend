@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom';
 import { getOneReport } from '../../../actions/report';
+import * as moment from 'moment'
 
 
 export const ReportDetails = () => {
@@ -39,6 +40,7 @@ export const ReportDetails = () => {
 				<li className="list" style={{listStyle: 'none'}}><strong>Latitude</strong> : {data && data.latitude}</li>
 				<li className="list" style={{listStyle: 'none'}}><strong>congestion Details</strong> : {data && data.congestionDetails}</li>
 				<li className="list" style={{listStyle: 'none'}}><strong>Reported By</strong> : {data && data.reportedBy}</li>
+				<li className="list" style={{listStyle: 'none'}}><strong>Reported At</strong> : {moment(data && data.createdAt).fromNow()}</li>
 
 			</ul>
 			</div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FetchAllWarden, FetchOneWarden } from '../../../actions/authentication';
+import { FetchAllWarden } from '../../../actions/authentication';
 import { useHistory, Link } from 'react-router-dom';
 
 export const FetchWardenPage = () => {

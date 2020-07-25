@@ -55,6 +55,7 @@ const SignUpPage = () => {
       const { status, message, data, jwtToken } = user;
       // console.log('>>>>>>>>>>user', data);
       if (status === 201) {
+        localStorage.setItem("token", JSON.stringify(jwtToken));
         localStorage.setItem("adminOrWarden", JSON.stringify(data));
         return history.push("/adminDashBoard");
       }

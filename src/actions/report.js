@@ -129,3 +129,42 @@ export const editWardenReport = async (items) => {
 
 
 
+
+export const fetchAllWardenReport = async () => {
+	try {
+		const url = BACKEND_URL
+		const token = localStorage.getItem('token')
+		const reqOption = {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: token.split('"').join('')
+			},
+		}
+		const result = await fetch(`${url}/user/fetch-allReports`, reqOption)
+		const report = await result.json();
+		return report
+	} catch (err) {
+		return err
+	}
+}
+
+
+export const fetchOneWardenReport = async (id) => {
+	try {
+		const url = BACKEND_URL
+		const token = localStorage.getItem('token')
+		const reqOption = {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: token.split('"').join('')
+			},
+		};
+		const result = await fetch(`${url}/user/${id}/fetch-report`, reqOption)
+		const report = await result.json();
+		return report
+	} catch (err) {
+		return err
+	}
+};

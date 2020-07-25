@@ -32,7 +32,7 @@ const WardenBody = () => {
     }),
     onSubmit: async (values, { setSubmitting }) => {
       const user = await sendReports(values);
-      const { status, message, data } = user;
+      const { status, message } = user;
 
       if (status === 201) {
         setTimeout(() => alert("User success"), 2000);

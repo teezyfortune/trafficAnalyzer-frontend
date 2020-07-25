@@ -9,7 +9,6 @@ export const WardenReports = () => {
 		history.push('/wardenLogin');
 	}
 	const [reports, fetchReports] = useState([])
-	const [error, setError] = useState(false);
 
 	useEffect(() => {
 		const fetAllReports = async () => {
@@ -18,8 +17,7 @@ export const WardenReports = () => {
 				const { data } = report;
 				fetchReports(data);
 			} catch (err) {
-				setError(true)
-			}
+				return err			}
 		}
 		fetAllReports();
 	},	[])
