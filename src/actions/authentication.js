@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { BACKEND_URL } from '../utils/links';
 
 export const createUser = async (items) => {
@@ -99,3 +100,7 @@ export const FetchOneWarden = async (id) => {
 		return err
 	}
 }
+export const SignOut = () => {
+	localStorage.removeItem('EmpowerFarmerUser');
+	axios.get(`${BACKEND_URL}/auth/logout`);
+};

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
+import {SignOut} from '../../../../actions/authentication';
 import './AdminLeftNav.css';
 const Ul = styled.ul`
   list-style: none;
@@ -45,6 +46,9 @@ const AdminLeftNav = ({open}) => {
             <i className="fa fa-id-card" aria-hidden="true"></i>
             <span>All Warden</span>
           </Link>
+        </li>
+        <li>
+          <Link to="/adminLogin" onClick={ SignOut }><i className="fa fa-window-close" aria-hidden="true"></i><span>Log Out</span></Link>
         </li>
       </Ul>
     </>
