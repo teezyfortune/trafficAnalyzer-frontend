@@ -131,7 +131,8 @@ const AdminBody = () => {
                     className="form-control"
                     {...formik.getFieldProps("Gender")}
                   >
-                    <option defaultValue>Male</option>
+                    <option defaultValue>Gender</option> 
+                    <option>Male</option>
                     <option>Female</option>
                   </select>
                 </div>
