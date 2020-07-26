@@ -19,12 +19,10 @@ export const HomePage = () => {
 	useEffect(() => {
 		const trafficReports = async () => {
 			const point = await fetchAllWardenReport();
-			const {data} = point
-			setPoint(data);
+			setPoint(point);
 		}
 		trafficReports()
 	}, [])
-	// console.log('>>>>>cords', coordinates);
 	return (
  		<div>
 			<ReactMapGl
@@ -35,7 +33,8 @@ export const HomePage = () => {
 					setViewPort(viewport)
 				}}
 			>
-				{coordinates.map(coords => (
+			{coordinates.status && coordinates.status === 404 ? <div className="nnn" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>{coordinates.message && coordinates.message} </div> :
+				coordinates.data && coordinates.data.map(coords => (
 					<Marker key={coords._id} 
 						longitude={coords.longitude}
 						latitude={coords.latitude}

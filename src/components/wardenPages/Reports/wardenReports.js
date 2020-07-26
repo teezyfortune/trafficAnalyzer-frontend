@@ -9,25 +9,23 @@ export const WardenReports = () => {
 		history.push('/wardenLogin');
 	}
 	const [reports, fetchReports] = useState([])
-
 	useEffect(() => {
 		const fetAllReports = async () => {
 			try {
 				const report = await getAllWardenReport();
-				const { data } = report;
-				fetchReports(data);
+				fetchReports(report);
 			} catch (err) {
 				return err			}
 		}
 		fetAllReports();
-	},	[])
-	// const { status, } = reports;
+	}, [])
+	
 	return (
 		<div>
 		<h1 className="text-center">Reports</h1>
 		<div>
-					{reports && reports.status === 404 ? <div className="nnn" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>{reports && reports.message} </div> :
-					reports.map( (locate, index) => (
+					{reports.status && reports.status === 404 ? <div className="nnn" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>{reports.message && reports.message} </div> :
+					reports.data && reports.data.map( (locate, index) => (
 		<div className="new" style={{ margin: "4rem" }} >
 					<div key={locate.userId}>{locate.location}</div>	
 					<div >{locate.congestionTime}</div>
@@ -39,4 +37,4 @@ export const WardenReports = () => {
 	)
 	
 }
-				
+			
