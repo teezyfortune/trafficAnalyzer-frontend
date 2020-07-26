@@ -18,7 +18,7 @@ export const ReportDetails = () => {
 			try {
 				const result = await getOneReport(reportId);
 				const {message} = result
-				// console.log('>>>>its show here', data.location )
+				// console.log('>>>>its show here', result.location )
 				fetOneReport(result);
 				setMessage(message)
 			} catch (err) {
@@ -27,7 +27,7 @@ export const ReportDetails = () => {
 		}
 		findUser();
 	}, [reportId]);
-	const { data } = report
+	const { data } = report;
 
 	return (
 		<div>
