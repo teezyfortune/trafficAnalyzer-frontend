@@ -31,7 +31,6 @@ export const EditReport = () => {
 		onSubmit: async (values, { setSubmitting }) => {
 			const report = await editWardenReport(values);
 			const { status, message } = report;
-			console.log('>>>>', )
 			if (status === 200) {
 				return history.push('/wardenDashboard');
 
