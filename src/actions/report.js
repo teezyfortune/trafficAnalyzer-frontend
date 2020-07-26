@@ -64,7 +64,7 @@ export const getOneReport = async (id) => {
 
 
 
-export const getOneWardenReport = async () => {
+export const getOneWardenReport = async (reportId) => {
 	try {
 		const url = BACKEND_URL
 		const token = localStorage.getItem('token')
@@ -75,7 +75,7 @@ export const getOneWardenReport = async () => {
 				Authorization: token.split('"').join('')
 			},
 		}
-		const result = await fetch(`${url}/report/warden-report`, reqOption)
+		const result = await fetch(`${url}/report/${reportId}/warden-report`, reqOption)
 		const report = await result.json();
 		return report
 	} catch (err) {

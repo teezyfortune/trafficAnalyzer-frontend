@@ -25,7 +25,7 @@ import SingleWarden from './components/adminPages/ViewSingleWarden/singleWarden'
 const App = () => (
   <Router>
     <Switch>
-    <Route path="/traffic-map/Home" exact component={HomePage} />
+    <Route path="/" exact component={HomePage} />
       <Route path="/adminSignUp" exact component={SignupPage} />
       <Route path="/send-report" exact component={ReportsPage} />
       <Route path="/admin/reports" exact component={GetReportPage} />
