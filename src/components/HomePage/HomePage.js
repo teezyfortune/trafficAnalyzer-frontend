@@ -8,8 +8,8 @@ import * as moment from 'moment';
 
 export const HomePage = () => {
 	const [viewport, setViewPort] = useState({
-		latitude: 6.465422,
-		longitude:  3.406448,
+		latitude: 31.582045,
+		longitude:  74.329376,
 		width: '100vw,',
 		height:'100vh',
 		zoom:10

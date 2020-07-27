@@ -37,7 +37,6 @@ export const ReportsPage = () => {
 				localStorage.setItem('adminOrWarden', JSON.stringify(data));
 				setTimeout(() => alert('report sent successfully'), 2000);
 				return history.push('/warden/reports');
-
 			}
 			setTimeout(() => {
 				setError(true);
