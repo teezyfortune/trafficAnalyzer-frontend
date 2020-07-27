@@ -41,7 +41,7 @@ const App = () => (
       <Route path="/admin/wardens/:wardenId" exact component={WardenDetails} />
       <Route path="/wardenLogin" exact component={WardenLoginPage} />
       <Route path="/admin/allWarden" exact component={AllWarden} />
-      <Route path="/singleWarden" exact component={SingleWarden} />
+      <Route path="/singleWarden/:userId" exact component={SingleWarden} />
     </Switch>
   </Router>
 );
