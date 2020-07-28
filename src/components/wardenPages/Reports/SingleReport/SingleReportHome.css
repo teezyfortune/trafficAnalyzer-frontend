@@ -1,0 +1,15 @@
+.allWarden {
+    display: grid;
+    grid-template-columns: 15% 85%;
+    grid-gap: 30px;
+    grid-template-areas: 
+    "sidebar viewAllWarden"  
+}
+@media only screen and (max-width: 800px) {
+    .allWarden {
+        grid-gap: 0px;
+        grid-template-areas:  
+        "sidebar sidebar" 
+        "viewAllWarden viewAllWarden"
+    }
+}

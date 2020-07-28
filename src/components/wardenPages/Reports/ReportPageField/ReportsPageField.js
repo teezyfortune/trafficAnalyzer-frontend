@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useHistory } from 'react-router-dom';
-import { sendReports } from '../../../actions/report';
+import { sendReports } from '../../../../actions/report';
+import './ReportPageField.css';
 
 export const ReportsPage = () => {
 	const history = useHistory()

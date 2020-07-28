@@ -9,8 +9,8 @@ import profileImage from '../../Images/profile.svg';
 const LoginPage = () => {
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem("adminOrWarden"));
-  if (!user) {
-    history.push("/");
+  if (user) {
+    history.push("/adminDashBoard");
   }
   const [error, setError] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
