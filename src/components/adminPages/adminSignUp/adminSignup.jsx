@@ -164,7 +164,7 @@ const SignUpPage = () => {
                     {...formik.getFieldProps("country")}
                   >
                     <option defaultValue>Country</option>
-                    <option>Uzbekistan</option>
+                    <option>Pakistan</option>
                   </select>
                 </div>
                 <label>Create password</label>

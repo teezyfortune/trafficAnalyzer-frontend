@@ -1,17 +1,35 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
-import { createUser } from "../../../../actions/authentication";
+import { addWarden } from "../../../../actions/authentication";
 import "./AdminBody.css";
 import profileImage from '../../../Images/profile.svg';
 
+toast.configure();
+
+const Notify = (status, message) => {
+  if(status === 201) {
+    toast.success(`${message}`, {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 8000
+    });
+  }
+  if(status > 300){
+    toast.error(`${message}`, {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 8000
+    });
+  }
+}
 const AdminBody = () => {
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem("adminOrWarden"));
   console.log(">>>>>user", user.userType)
-  if ( user.userType!== 'admin') {
-		history.push('/');
+  if (!user) {
+		history.push('/')
   }
   const phoneRegex = RegExp(
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -19,6 +37,7 @@ const AdminBody = () => {
 
   const [error, setError] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+  const [notify, setNotify] = useState("");
 
   const formik = useFormik({
     initialValues: {
@@ -49,17 +68,19 @@ const AdminBody = () => {
         .matches(/(?=.*[0-9])/, "Password must contain a number."),
     }),
     onSubmit: async (values, { setSubmitting }) => {
-      const user = await createUser(values);
-      const { status, message, data } = user;
-      // console.log('>>>>>>>>>>user', data);
+      const user = await addWarden(values);
+      const { status, message } = user;
+      console.log('>>>>>>>>>>user', user);
 
       if (status === 201) {
-        localStorage.setItem("adminOrWarden", JSON.stringify(data));
+        setNotify(Notify(status, message));
+        // window.location.reload(true);
         return history.push("/adminDashBoard");
       }
       setTimeout(() => {
         setError(true);
         setAlertMessage(message);
+        setNotify(Notify(status, message));
         setSubmitting(false);
       }, 401);
     },
@@ -162,7 +183,7 @@ const AdminBody = () => {
                     {...formik.getFieldProps("country")}
                   >
                     <option defaultValue>Country</option>
-                    <option>Uzbekistan</option>
+                    <option>Pakistan</option>
                   </select>
                 </div> 
                 <div className="col form-group">

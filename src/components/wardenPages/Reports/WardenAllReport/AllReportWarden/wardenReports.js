@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { getAllWardenReport } from '../../../actions/report';
+import { getAllWardenReport } from '../../../../../actions/report';
 import { useHistory, Link } from 'react-router-dom';
+import './wardenReport.css';
 
 export const WardenReports = () => {
 	const history = useHistory()

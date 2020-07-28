@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom';
-import { getOneWardenReport } from '../../../actions/report';
-import* as moment from 'moment'
+import { getOneWardenReport } from '../../../../../actions/report';
+import* as moment from 'moment';
+import './viewReportWarden.css';
 
-export const ViewReport = () => {
+export const ViewReportWarden = () => {
 	const match  = useParams();
 	// console.log('>>>>match', match.reportId)
 	const {reportId} =  match

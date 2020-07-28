@@ -1,8 +1,9 @@
 import React, {useState,} from 'react'
 import {  useHistory } from 'react-router-dom';
-import { editWardenReport } from '../../../actions/report';
+import { editWardenReport } from '../../../../actions/report';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
+import './editReportWarden.css';
 
 
 export const EditReport = () => {
