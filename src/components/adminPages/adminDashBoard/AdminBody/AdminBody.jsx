@@ -67,14 +67,14 @@ const AdminBody = () => {
         .min(6, "password must be minimum of 6 characters")
         .matches(/(?=.*[0-9])/, "Password must contain a number."),
     }),
-    onSubmit: async (values, { setSubmitting }) => {
+    onSubmit: async (values, { setSubmitting, resetForm }) => {
       const user = await addWarden(values);
       const { status, message } = user;
       console.log('>>>>>>>>>>user', user);
 
       if (status === 201) {
         setNotify(Notify(status, message));
-        // window.location.reload(true);
+        resetForm({ values: '' });
         return history.push("/adminDashBoard");
       }
       setTimeout(() => {

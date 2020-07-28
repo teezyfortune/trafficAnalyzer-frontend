@@ -8,11 +8,11 @@ import wardenDashBoard from "./components/wardenPages/wardenDashBoard/WardenDash
 import WardenLoginPage from "./components/wardenPages/wardenLoginPage/wardenLogin";
 import { ReportsPage } from './components/wardenPages/Reports/ReportPageField/ReportsPageField';
 import { TestingPage } from './components/adminPages/Reports/testingPage';
-import {GetReportPage} from './components/adminPages/Reports/getReportPage';
-import {ReportDetails} from './components/adminPages/Reports/reportDetails';
+import GetReportPage from './components/adminPages/Reports/WardenAllReport/AllReportWardenPage';
+import SingleReportHomeAdmin from './components/adminPages/Reports/SingleReport/SingleReportHome';
 import AllWardenReportPage from './components/wardenPages/Reports/WardenAllReport/AllReportWardenPage';
 import SingleReportHome from './components/wardenPages/Reports/SingleReport/SingleReportHome';
-import { EditReport } from './components/wardenPages/Reports/EditProfile/editReportWarden';
+import EditReportHome from './components/wardenPages/Reports/EditProfile/editReportHomePage';
 import AllWardenReports from './components/adminPages/wardenReport/AllReport/AllReportLandingPage';
 import SingleReportWarden  from './components/adminPages/wardenReport/SingleReport/SingleReportLandingPage';
 import {HomePage} from './components/HomePage/HomePage';
@@ -30,8 +30,8 @@ const App = () => (
       <Route path="/send-report" exact component={ReportsPage} />
       <Route path="/admin/reports" exact component={GetReportPage} />
       <Route path="/warden/reports" exact component={AllWardenReportPage} />
-      <Route path="/warden/edit-report" exact component={EditReport} />
-      <Route path="/reports/:reportId" exact component={ReportDetails} />
+      <Route path="/warden/edit-report" exact component={EditReportHome} />
+      <Route path="/reports/:reportId" exact component={SingleReportHomeAdmin} />
       <Route path="/warden/report/:reportId" exact component={SingleReportHome} />
       <Route path="/search" exact component={TestingPage} />
       <Route path="/adminLogin" exact component={LoginPage} />

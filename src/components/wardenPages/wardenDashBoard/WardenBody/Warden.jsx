@@ -1,11 +1,29 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useHistory } from "react-router-dom";
 import { sendReports } from "../../../../actions/report";
 import "./Warden.css";
 import profileImage from "../../../Images/profile.svg";
 
+toast.configure();
+
+const ReportNotify = (status, message) => {
+  if(status === 201) {
+    toast.success(`${message}`, {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 8000
+    });
+  }
+  if(status > 300){
+    toast.error(`${message}`, {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 8000
+    });
+  }
+}
 const WardenBody = () => {
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem("adminOrWarden"));
@@ -14,6 +32,7 @@ const WardenBody = () => {
   }
   const [error, setError] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+  const [notify, setNotify] = useState("");
 
   const formik = useFormik({
     initialValues: {
@@ -30,12 +49,13 @@ const WardenBody = () => {
         .required("congestionDetails is required")
         .max(100, "congestion details should not be more than 20"),
     }),
-    onSubmit: async (values, { setSubmitting }) => {
+    onSubmit: async (values, { setSubmitting, resetForm }) => {
       const user = await sendReports(values);
       const { status, message } = user;
 
       if (status === 201) {
-        setTimeout(() => alert("User success"), 2000);
+        setNotify(ReportNotify(status, message));
+        resetForm({ values: '' });
         return history.push("/wardenDashboard");
       }
       setTimeout(() => {

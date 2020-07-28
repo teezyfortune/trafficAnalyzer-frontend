@@ -1,7 +1,7 @@
 import React from "react";
 import WardenBurger from "./WardenBurger";
 
-const SideBarAdmin = () => {
+const WardenSideBarAdmin = () => {
   return (
     <div className="sidebar">
       <WardenBurger />
@@ -9,4 +9,4 @@ const SideBarAdmin = () => {
   );
 };
 
-export default SideBarAdmin;
+export default WardenSideBarAdmin;
