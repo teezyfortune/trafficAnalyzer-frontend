@@ -27,7 +27,6 @@ const Notify = (status, message) => {
 const AdminBody = () => {
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem("adminOrWarden"));
-  console.log(">>>>>user", user.userType)
   if (!user) {
 		history.push('/')
   }
@@ -70,7 +69,6 @@ const AdminBody = () => {
     onSubmit: async (values, { setSubmitting, resetForm }) => {
       const user = await addWarden(values);
       const { status, message } = user;
-      console.log('>>>>>>>>>>user', user);
 
       if (status === 201) {
         setNotify(Notify(status, message));

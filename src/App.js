@@ -6,8 +6,6 @@ import LoginPage from "./components/adminPages/adminLoginPage/adminLogin";
 import AdminDashBoard from "./components/adminPages/adminDashBoard/AdminDashBoard";
 import wardenDashBoard from "./components/wardenPages/wardenDashBoard/WardenDashBoard.jsx";
 import WardenLoginPage from "./components/wardenPages/wardenLoginPage/wardenLogin";
-import { ReportsPage } from './components/wardenPages/Reports/ReportPageField/ReportsPageField';
-import { TestingPage } from './components/adminPages/Reports/testingPage';
 import GetReportPage from './components/adminPages/Reports/WardenAllReport/AllReportWardenPage';
 import SingleReportHomeAdmin from './components/adminPages/Reports/SingleReport/SingleReportHome';
 import AllWardenReportPage from './components/wardenPages/Reports/WardenAllReport/AllReportWardenPage';
@@ -27,16 +25,14 @@ const App = () => (
     <Switch>
     <Route path="/" exact component={HomePage} />
       <Route path="/adminSignUp" exact component={SignupPage} />
-      <Route path="/send-report" exact component={ReportsPage} />
       <Route path="/admin/reports" exact component={GetReportPage} />
       <Route path="/warden/reports" exact component={AllWardenReportPage} />
       <Route path="/warden/edit-report" exact component={EditReportHome} />
       <Route path="/reports/:reportId" exact component={SingleReportHomeAdmin} />
       <Route path="/warden/report/:reportId" exact component={SingleReportHome} />
-      <Route path="/search" exact component={TestingPage} />
-      <Route path="/adminLogin" exact component={LoginPage} />
+      <Route path="/wardenDashBoard" exact component={wardenDashBoard                                                                                                               } />
       <Route path="/adminDashBoard" exact component={AdminDashBoard} />
-      <Route path="/wardenDashboard" exact component={wardenDashBoard} />
+      <Route path="/adminLogin" exact component={LoginPage} />
       <Route path="/admin/wardens" exact component={AllWardenReports} />
       <Route path="/admin/wardens/:wardenId" exact component={SingleReportWarden} />
       <Route path="/wardenLogin" exact component={WardenLoginPage} />

@@ -11,11 +11,15 @@
     width: 370px;
     min-height: 40vh;
     border-radius: 10px;
+    padding: 20px 4px 0px 0px;
 }
 .single-all-cards li{
     display: flex;
     text-align: center;
     line-height: 50px;
+    padding-right: 0px ;
+    padding-left: 10 ;
+
 }
 @media only screen and (max-width: 800px) {
     .single-details{
@@ -23,7 +27,8 @@
     }
     .single-all-cards{
         width: 300px;
-        height: 50vh;
+        height: 60vh;
+
     }
     .single-all-cards li{
         line-height: 35px; 

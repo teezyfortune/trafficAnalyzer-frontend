@@ -23,7 +23,10 @@ const ViewSingleWarden = () => {
     const { data } = warden
     return (
         <div className="single-container">
+        
             <div className="single-cards">
+                <div>        <h3 className="text-center">Warden Information</h3>
+                </div>
                 <p>
                     <span>FullName: {data && data.fullName}</span>
                     <span>Email: {data && data.email}</span>

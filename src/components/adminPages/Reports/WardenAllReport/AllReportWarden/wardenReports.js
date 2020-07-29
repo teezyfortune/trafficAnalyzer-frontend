@@ -26,7 +26,7 @@ export const GetReportPage = () => {
   }, []);
   return (
     <div>
-      <h1 className="text-center">Warden All Reports</h1>
+      <h1 className="text-center">All Wardens Reports</h1>
       <div className="all-report-warden">
         {reports && reports.status === 404 ? (
           <div
