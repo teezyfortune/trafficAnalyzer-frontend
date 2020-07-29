@@ -24,9 +24,9 @@ export const WardenReports = () => {
 
   return (
     <div>
-      <h1 className="text-center">Warden All Report</h1>
+      <h1 className="text-center">All Wardens Report</h1>
       <div className="all-report">
-          {reports.status && reports.status === 404 ? (
+          {reports.status && reports.status > 300 ? (
             <div
               className="nnn"
               style={{
@@ -40,7 +40,7 @@ export const WardenReports = () => {
           ) : (
             reports.data &&
             reports.data.map((locate, index) => (
-              <div className="all-cards">
+              <div className="all-cards" key={locate._id}>
                 <div className="new" style={{ margin: "4rem", fontSize: "25px" }}>
                   <div key={locate.userId}>{locate.location}</div>
                   <div>{locate.congestionTime}</div>

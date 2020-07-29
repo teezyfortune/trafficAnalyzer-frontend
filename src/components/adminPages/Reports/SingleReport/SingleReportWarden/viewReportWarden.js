@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getOneWardenReport } from "../../../../../actions/report";
+import { getOneReport } from "../../../../../actions/report";
 import * as moment from "moment";
 import "./viewReportWarden.css";
+
 
 export const ViewReportWarden = () => {
   const match = useParams();
@@ -15,7 +16,7 @@ export const ViewReportWarden = () => {
   useEffect(() => {
     const findUser = async () => {
       try {
-        const result = await getOneWardenReport(reportId);
+        const result = await getOneReport(reportId);
         const { message } = result;
         // console.log('>>>>its show here', data.location )
         fetOneReport(result);
@@ -30,12 +31,14 @@ export const ViewReportWarden = () => {
 
   return (
     <div>
-      {error ? <div>{alertMessage}</div> : ""}
-      <h3 className="text-center">Report Details</h3>
-	  <div className="single-details">
-		<ul className="single-all-cards">
+			{error ? <div>{alertMessage}</div> : ""}
+			
+			<div className="single-details">
+				<ul className="single-all-cards">
+				<h3 className="text-center" >Report Details</h3>
+
 			<li className="list" style={{ listStyle: "none" }}>
-			<strong>location</strong> : {data && data.location}
+		<strong>location</strong>: {data && data.location}
 			</li>
 			<li className="list" style={{ listStyle: "none" }}>
 			<strong>Congestion Time</strong> : {data && data.congestionTime}
@@ -56,7 +59,7 @@ export const ViewReportWarden = () => {
 			<strong>Reported By</strong> : {data && data.reportedBy}
 			</li>
 			<li className="list" style={{ listStyle: "none" }}>
-			<strong>Reported At</strong> :{" "}
+			<strong>Reporte</strong> :{" "}
 			{moment(data && data.createdAt).fromNow()}
 			</li>
 		</ul>

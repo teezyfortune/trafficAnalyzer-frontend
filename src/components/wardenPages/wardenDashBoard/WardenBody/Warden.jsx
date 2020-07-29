@@ -50,9 +50,8 @@ const WardenBody = () => {
         .max(100, "congestion details should not be more than 20"),
     }),
     onSubmit: async (values, { setSubmitting, resetForm }) => {
-      const user = await sendReports(values);
-      const { status, message } = user;
-
+      const report = await sendReports(values);
+      const { status, message } = report;
       if (status === 201) {
         setNotify(ReportNotify(status, message));
         resetForm({ values: '' });

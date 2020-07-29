@@ -22,11 +22,11 @@ export const sendReports = async (items) => {
 	}
 }
 
+// all report by admin
 export const getAllReports = async () => {
 	try {
 		const url = BACKEND_URL
 		const token = localStorage.getItem('token');
-		console.log('>>>>>', token)
 		const reqOption = {
 			method: 'GET',
 			headers: {
@@ -41,7 +41,7 @@ export const getAllReports = async () => {
 	}
 }
 
-
+// single report by admin
 export const getOneReport = async (id) => {
 	try {
 		const url = BACKEND_URL
@@ -62,8 +62,7 @@ export const getOneReport = async (id) => {
 }
 
 
-
-
+// Warden gets all their reports
 export const getOneWardenReport = async (reportId) => {
 	try {
 		const url = BACKEND_URL
@@ -84,7 +83,7 @@ export const getOneWardenReport = async (reportId) => {
 }
 
 
-
+//Wardens gets ones report
 export const getAllWardenReport = async () => {
 	try {
 		const url = BACKEND_URL
@@ -98,7 +97,6 @@ export const getAllWardenReport = async () => {
 		}
 		const result = await fetch(`${url}/report/all-wardenReports`, reqOption)
 		const report = await result.json();
-		console.log('>>>>>>report', report)
 		return report
 	} catch (err) {
 		return err
@@ -106,7 +104,7 @@ export const getAllWardenReport = async () => {
 }
 
 
-
+//warden edit their report
 export const editWardenReport = async (items) => {
 	try {
 		const url = BACKEND_URL
@@ -128,8 +126,7 @@ export const editWardenReport = async (items) => {
 }
 
 
-
-
+// user retrieve all report 
 export const fetchAllWardenReport = async () => {
 	try {
 		const url = BACKEND_URL
@@ -149,7 +146,7 @@ export const fetchAllWardenReport = async () => {
 	}
 }
 
-
+// One report by warden
 export const fetchOneWardenReport = async (id) => {
 	try {
 		const url = BACKEND_URL
