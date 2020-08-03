@@ -101,6 +101,6 @@ export const FetchOneWarden = async (id) => {
 	}
 }
 export const SignOut = () => {
-	localStorage.removeItem('EmpowerFarmerUser');
+	localStorage.removeItem('adminOrWarden');
 	axios.get(`${BACKEND_URL}/auth/logout`);
 };
