@@ -1,0 +1,18 @@
+.marker-btn img{
+	width: 30px;
+	height:20px;
+	border: none;
+	border-radius:10px;
+}
+.report-popup span{
+	display: inline-block;
+	align-items: center;
+	font-weight: bold;
+	margin-left: 110px;
+	margin-right: 10px;
+	color: cornflowerblue;
+
+}
+.report-popup .display-text{
+	margin-right: 30px;
+}
